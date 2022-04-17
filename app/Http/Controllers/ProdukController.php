@@ -24,4 +24,24 @@ class ProdukController extends Controller
         ProdukModel::create($request->all());
         return redirect('/produk');
     }
+
+    public function edit($id)
+    {
+        $produk = ProdukModel::find($id);
+        return view('produk.edit', compact((['produk'])));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $produk = ProdukModel::find($id);
+        $produk->update($request->all());
+        return redirect('/produk');
+    }
+
+    public function destroy($id)
+    {
+        $produk = ProdukModel::findOrFail($id)->delete();
+        // $produk->delete;
+        return redirect('/produk');
+    }
 }

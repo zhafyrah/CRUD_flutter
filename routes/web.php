@@ -20,8 +20,11 @@ Route::get('/', function () {
 
 // Route::get('/produk', function () {
 //     return view('produk.index');
- // });
+// });
 
- Route::get('/produk', [ProdukController::class, 'index']);
- Route::get('/produk/tambah', [ProdukController::class, 'create']);
- Route::post('/produk/tambah', [ProdukController::class, 'store']);
+Route::get('/produk', [ProdukController::class, 'index']);
+Route::get('/produk/tambah', [ProdukController::class, 'create']);
+Route::post('/produk', [ProdukController::class, 'store']);
+Route::get('/produk/{id}/edit', [ProdukController::class, 'edit']);
+Route::put('/produk/{id}', [ProdukController::class, 'update']);
+Route::delete('/produk/{id}', [ProdukController::class, 'destroy']);
