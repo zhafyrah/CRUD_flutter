@@ -14,16 +14,16 @@ class EditProduk extends StatelessWidget {
   TextEditingController _hargaController = TextEditingController();
   TextEditingController _imageUrlController = TextEditingController();
   Future updateProduk() async {
-    final response = await http.post(
+    final response = await http.put(
         Uri.parse(
-            "http://127.0.0.1:8000/api/produk/" + Produk['id'].toString()),
+            "http://192.168.2.8:8000/api/produk/" + Produk['id'].toString()),
         body: {
-          "nama": _nameController.text,
+          "nama_produk": _nameController.text,
           "detail_produk": _detailController.text,
           "harga": _hargaController.text,
           "image_url": _imageUrlController.text,
         });
-
+    print('status code edit : ${response.statusCode} ');
     return json.decode(response.body);
   }
 
@@ -38,7 +38,7 @@ class EditProduk extends StatelessWidget {
             child: Column(
               children: [
                 TextFormField(
-                  controller: _nameController..text = Produk['nama'],
+                  controller: _nameController..text = Produk['nama_produk'],
                   decoration: InputDecoration(labelText: "Nama"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -78,6 +78,7 @@ class EditProduk extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
+                      print("Edit");
                       if (_formKey.currentState!.validate()) {
                         updateProduk().then((value) {
                           Navigator.push(

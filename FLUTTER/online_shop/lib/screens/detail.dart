@@ -11,7 +11,7 @@ class ProdukDetail extends StatelessWidget {
       appBar: AppBar(title: Text('Detail Produk')),
       body: Column(children: [
         Container(
-          child: Image.network(produk['iamge_url']),
+          child: Image.network(produk['image_url']),
         ),
         SizedBox(
           height: 20,
@@ -27,8 +27,10 @@ class ProdukDetail extends StatelessWidget {
               ),
               Row(
                 children: [
-                Icon(Icons.edit), Icon(Icons.delete),
-              ],)
+                  Icon(Icons.edit),
+                  Icon(Icons.delete),
+                ],
+              )
             ],
           ),
         ),
